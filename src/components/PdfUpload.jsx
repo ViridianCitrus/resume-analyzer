@@ -6,7 +6,7 @@ import { pdfjs } from "react-pdf";
 import keyword_extractor from "keyword-extractor";
 
 const PdfUploader = () => {
-  //included as part of library use
+  //Included as part of react-pdf library use
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   });
@@ -26,7 +26,6 @@ const PdfUploader = () => {
   
   const extractTextFromPDF = async () => {
     if (!file) return;
-    
     try {
       // Load the PDF file
       const arrayBuffer = await file.arrayBuffer();
@@ -38,9 +37,9 @@ const PdfUploader = () => {
         const page = await pdf.getPage(pageNum);
         const textContent = await page.getTextContent();
         const text = textContent.items.map((item) => item.str).join(" ");
-  
         textArray.push(text);
       };
+      
       setResumeText(textArray.join("\n"));
 
       //Extracts keywords from the resume text with no duplicates

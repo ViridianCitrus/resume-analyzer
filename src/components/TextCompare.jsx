@@ -13,12 +13,14 @@ const TextCompare = () => {
   const {keywords} = context;
   
   const compareText = useCallback(() => {
-    const descriptionKeywords = keyword_extractor.extract((description, {
+    //Extracting job description keywords
+    const descriptionKeywords = (keyword_extractor.extract(description, {
       language:"english",
       remove_digits: true,
       return_changed_case: true,
       remove_duplicates: true,
-    }).map(word => word.replace(/[^\w\s]/g, '')));
+    })).map(word => word.replace(/[^\w\s]/g, ''));
+    
     //Scaling the score based on the ratio between job description and resume keywords, displaying as a percentage to the nearest 2 decimals
     const score = jaccard.index(descriptionKeywords, keywords) * (Math.max(descriptionKeywords.length / keywords.length, keywords.length / descriptionKeywords.length))
     setSimilarityScore(Math.round(score*10000)/100);
