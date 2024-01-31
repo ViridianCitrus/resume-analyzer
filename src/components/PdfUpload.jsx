@@ -44,20 +44,20 @@ const PdfUploader = () => {
       setResumeText(textArray.join("\n"));
 
       //Extracts keywords from the resume text with no duplicates
-      setKeywords(keyword_extractor.extract(textArray.join("\n"), {
+      setKeywords((keyword_extractor.extract(textArray.join("\n"), {
         language:"english",
         remove_digits: true,
         return_changed_case:true,
         remove_duplicates: true,
-      }));
+      })).map(word => word.replace(/[^\w\s]/g, '')));
 
       //Extracts keywords from the resume text with duplicates
-      setKeywordsDupe(keyword_extractor.extract(textArray.join("\n"), {
+      setKeywordsDupe((keyword_extractor.extract(textArray.join("\n"), {
         language:"english",
         remove_digits: true,
         return_changed_case:true,
         remove_duplicates: false,
-      }));
+      })).map(word => word.replace(/[^\w\s]/g, '')));
 
     } catch (error) {
       console.error("Error reading PDF file:", error);
