@@ -1,10 +1,16 @@
-# Getting Started with Create React App
+# Resume Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my submission for the frontend component of the Adanomad Tech Consulting Challenge, aka the Resume Matcher.
+
+The approach I took was to bootstrap the project using Create React App, integrating all 3 main components of the challenge into one webpage. For the upload, I used a library called `react-pdf` to read the text from the user-uploaded resume. I then took the raw data, and for the sake of the next steps, used a library called `keyword_extractor`, which used multiple sources to identify stop words and parse out the keywords. Using the same library, the user-inputted job description was also parsed similarly.
+
+The keywords were then compared with each other using the `jaccard-index` library, which used the Jaccard similarity coefficient index to calculate the similarity between two different arrays, which in our case, was the keywords of both the resume and the job description to ultimately create a proportional similarity score. Finally, the `wordcloud` library was used to generate a word cloud based on the most comment keywords found from the previous data formatting. To format the components, I used Tailwind CSS for its ease of use and familiarity.
+
+Normally, the application would have used a more robust backend API to extract keywords and find match similarity. However, since this is created only as a frontend application, I was only able to use some more easily available, but simpler tools.
 
 ## Get Started
 
-To run the application, make sure all project depedencies are installed with `npm install`. Then, launch the application in your browser using `npm start`.
+To run the application, make sure all project dependencies are installed with `npm install`. Then, launch the application in your browser using `npm start`.
 
 ## Available Scripts
 
